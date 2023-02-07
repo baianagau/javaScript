@@ -19,4 +19,5 @@ btnAgregar.onclick = () => {
     console.log(contacto)
    guardarContacto(ls, contacto)
 }
+
 cargarContactos(ls, listado)
