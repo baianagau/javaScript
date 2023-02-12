@@ -1,18 +1,19 @@
-const guardarContacto = (ls, contacto) => {
-  ls.setItem(contacto.id, JSON.stringify(contacto))
-  // window.location.href = 'http://127.0.0.1:5500/preEntrega-gau/index.html'
+const ls = window.localStorage;
+const listado = document.querySelector('.listado');
 
-}
-const cargarContactos = (ls, parentNode) => {
+const guardarContacto = (contacto) => {
+  ls.setItem(contacto.id, JSON.stringify(contacto));
+};
+
+const cargarContactos = () => {
   let claves = Object.keys(ls)
-  console.log(claves)
   for (clave of claves) {
     let contacto = JSON.parse(ls.getItem(clave))
-    crearContacto(parentNode, contacto, ls)
-  }
-}
+    crearContacto(contacto);
+  };
+};
 
-const crearContacto = (parentNode, contacto, ls) => {
+const crearContacto = (contacto) => {
   let divContacto = document.createElement('div')
   let nombreContacto = document.createElement('h3')
   let numeroContacto = document.createElement('p')
@@ -29,13 +30,15 @@ const crearContacto = (parentNode, contacto, ls) => {
 
   icono.onclick = () => {
     ls.removeItem(contacto.id)
-    window.location.href = 'http://127.0.0.1:5500/preEntrega-gau/index.html'
+    Swal.fire("Contacto eliminado")
+    .then(()=>window.location.href = 'http://127.0.0.1:5500/preEntrega-gau/index.html'
+    )
+    
   }
 
   divContacto.appendChild(nombreContacto)
   divContacto.appendChild(numeroContacto)
   divContacto.appendChild(direccionContacto)
   divContacto.appendChild(icono)
-
-  parentNode.appendChild(divContacto)
+  listado.appendChild(divContacto)
 }
