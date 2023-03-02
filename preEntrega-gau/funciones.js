@@ -13,16 +13,20 @@ const cargarContactos = () => {
   };
 };
 
-const crearContacto = (contacto) => {
+const crearContacto = (contacto) => { 
   let divContacto = document.createElement('div')
   let nombreContacto = document.createElement('h3')
   let numeroContacto = document.createElement('p')
   let direccionContacto = document.createElement('p')
+  let paisContacto = document.createElement('p')
+
   let icono = document.createElement('span')
 
   nombreContacto.innerHTML = contacto.nombre
   numeroContacto.innerHTML = contacto.numero
   direccionContacto.innerHTML = contacto.direccion
+  paisContacto.innerHTML = contacto.pais
+
   icono.innerHTML = 'delete'
 
   divContacto.classList.add('contacto')
@@ -31,14 +35,13 @@ const crearContacto = (contacto) => {
   icono.onclick = () => {
     ls.removeItem(contacto.id)
     Swal.fire("Contacto eliminado")
-    .then(()=>window.location.href = 'http://127.0.0.1:5500/preEntrega-gau/index.html'
-    )
-    
+    .then(()=>window.location.href = 'http://127.0.0.1:5500/preEntrega-gau/index.html');
   }
 
-  divContacto.appendChild(nombreContacto)
-  divContacto.appendChild(numeroContacto)
-  divContacto.appendChild(direccionContacto)
-  divContacto.appendChild(icono)
+  divContacto.appendChild(nombreContacto);
+  divContacto.appendChild(numeroContacto);
+  divContacto.appendChild(direccionContacto);
+  divContacto.appendChild(paisContacto);
+  divContacto.appendChild(icono);
   listado.appendChild(divContacto)
 }
